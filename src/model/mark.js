@@ -84,7 +84,7 @@ export class Mark {
   // Create a properly sorted mark set from null, a single mark, or an
   // unsorted array of marks.
   static setFrom(marks) {
-    if (!marks || marks.length == 0) return empty
+    if (!marks || (Array.isArray(marks) && marks.length == 0)) return empty
     if (marks instanceof Mark) return [marks]
     var copy = marks.slice()
     copy.sort((a, b) => a.type.rank - b.type.rank)

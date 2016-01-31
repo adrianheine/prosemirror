@@ -209,7 +209,7 @@ export class NodeType extends SchemaItem {
   // Test whether this node type can contain nodes of the given node
   // type.
   canContainType(type) {
-    return type.kind && type.kind.isSubKind(this.contains)
+    return type.kind && type.kind.isSubKind(this.contains) || false
   }
 
   // :: (NodeType) → bool
@@ -217,7 +217,7 @@ export class NodeType extends SchemaItem {
   // type are a sub-type of the nodes that can be contained in this
   // type.
   canContainContent(type) {
-    return type.contains && type.contains.isSubKind(this.contains)
+    return type.contains && type.contains.isSubKind(this.contains) || false
   }
 
   // :: (NodeType) → ?[NodeType]
@@ -349,7 +349,7 @@ export class NodeKind {
     sub.subs.forEach(next => this.addSub(next))
   }
 
-  // :: (NodeKind) → bool
+  // :: (?NodeKind) → bool
   // Test whether `other` is a subkind of this kind (or the same
   // kind).
   isSubKind(other) {
